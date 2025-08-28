@@ -4,7 +4,7 @@ all: build
 
 build:
 	go build -o bin/certinfo ./cmd/certinfo
-#	go build -o bin/certinfo-web ./cmd/certinfo-web
+	go build -o bin/certinfo-web ./cmd/certinfo-web
 
 test:
 	go test ./...
