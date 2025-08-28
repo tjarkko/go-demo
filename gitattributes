@@ -1,0 +1,14 @@
+# Line endings
+*.go   text eol=lf
+*.sh   text eol=lf
+*.bat  text eol=crlf
+
+# Docs
+*.md   linguist-documentation
+*.yml  linguist-documentation
+*.yaml linguist-documentation
+
+# example certs
+*.pem  linguist-vendored
+*.crt  linguist-vendored
+*.der  linguist-vendored

@@ -1,0 +1,17 @@
+version: "2"
+
+run:
+  timeout: 3m
+  tests: true        # also lint test files
+
+linters:
+  enable:
+    - govet          # suspicious constructs, misuse of fmt, etc.
+    - staticcheck    # smart bugfinder, unused code, dead assignments
+    - ineffassign    # unused variable assignments
+    - errcheck       # check unhandled errors
+    - gosec          # basic security checks (crypto, hardcoded creds)
+
+  settings:
+    errcheck:
+      check-type-assertions: true

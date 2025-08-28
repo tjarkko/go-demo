@@ -1,0 +1,30 @@
+# Go build artifacts
+bin/
+*.out
+*.test
+
+# Logs
+*.log
+
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Coverage
+coverage.out
+
+# golangci-lint cache
+.golangci-lint.cache/
+
+# Sensitive crypto artifacts
+*.key
+*.csr
+*.srl
+
+# Optionally, ignore generated certs if you don't want to commit them
+#*.crt
+#*.pem
+#*.der
