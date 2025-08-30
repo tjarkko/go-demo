@@ -1,0 +1,12 @@
+FROM postgres:15-alpine
+
+# Set environment variables
+ENV POSTGRES_DB=blogdb
+ENV POSTGRES_USER=bloguser
+ENV POSTGRES_PASSWORD=blogpass
+
+# Expose the default PostgreSQL port
+EXPOSE 5432
+
+# The default command will start PostgreSQL
+CMD ["postgres"]
