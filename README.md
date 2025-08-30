@@ -5,8 +5,9 @@ Each demo is a separate runnable app under `cmd/` and shares helpers in `interna
 
 ## Contents
 
-* **certinfo** — CLI that prints useful X.509 certificate details (SAN, KU/EKU, SKI/AKI, OCSP/CRL/AIA, fingerprints).
-* **certinfo-web** — Minimal HTTP server with an upload form that parses a cert and renders details via HTML templates.
+- **certinfo** — CLI that prints useful X.509 certificate details (SAN, KU/EKU, SKI/AKI, OCSP/CRL/AIA, fingerprints).
+- **certinfo-web** — Minimal HTTP server with an upload form that parses a cert and renders details via HTML templates.
+- **crud** — RESTful blog API demonstrating Go web development with PostgreSQL, sqlc, and database migrations.
 
 > Add/remove demos as you build them. Keep shared logic in `internal/`.
 
@@ -30,6 +31,17 @@ go-demo/
       templates/
         layout.html
         index.html
+    crud/
+      main.go
+      Dockerfile.db
+      sqlc.yaml
+      scripts/
+        db.sh
+      db/
+        migrations/
+        query/
+        generated/
+      README.md
 
   internal/
     pki/
@@ -40,17 +52,18 @@ go-demo/
 
 ## Prerequisites
 
-* Go ≥ 1.21
-* OpenSSL (for local test material)
-* (Optional) `golangci-lint` for linting
+- Go ≥ 1.21
+- OpenSSL (for local test material)
+- (Optional) `golangci-lint` for linting
 
-  * Install to `~/go/bin`:
+  - Install to `~/go/bin`:
 
     ```bash
     curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/HEAD/install.sh \
       | sh -s -- -b "$HOME/go/bin" v2.4.0
     ```
-  * Ensure `~/go/bin` is on your `PATH`.
+
+  - Ensure `~/go/bin` is on your `PATH`.
 
 ---
 
@@ -110,9 +123,9 @@ openssl x509 -req -in examples/server.csr -CA examples/root.crt -CAkey examples/
 
 > You now have:
 >
-> * `examples/root.crt` (trust anchor for clients),
-> * `examples/server.crt` + `examples/server.key` (for servers),
-> * **Never commit `.key` files**. The repo’s `.gitignore` excludes them.
+> - `examples/root.crt` (trust anchor for clients),
+> - `examples/server.crt` + `examples/server.key` (for servers),
+> - **Never commit `.key` files**. The repo’s `.gitignore` excludes them.
 
 ---
 
@@ -130,5 +143,16 @@ bin/certinfo examples/server.crt
 
 ```bash
 go run ./cmd/certinfo-web
-# open http://local
+# open http://localhost:8080
 ```
+
+### crud (Blog API)
+
+```bash
+cd cmd/crud
+./scripts/db.sh setup  # Setup database and run migrations
+go run main.go         # Start the API server
+# API available at http://localhost:8080
+```
+
+See `cmd/crud/README.md` for detailed setup instructions and API documentation.
